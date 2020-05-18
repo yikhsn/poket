@@ -1,35 +1,35 @@
 class Word {
-  int _id;
-  String _katakunci;
-  String _artikata;
+  int _eid;
+  String _entri;
+  String _jenis;
 
-  Word(this._id, this._katakunci, this._artikata);
+  Word(this._eid, this._entri, this._jenis);
 
   Word.map(dynamic obj) {
-    this._id = obj['_id'];
-    this._katakunci = obj['katakunci'];
-    this._artikata = obj['artikata'];
+    this._eid = obj['eid'];
+    this._entri = obj['entri'];
+    this._jenis = obj['jenis'];
   }
 
-  String get katakunci => _katakunci;
-  String get artikata => _artikata;
-  int get id => _id;
+  String get entri => _entri;
+  String get jenis => _jenis;
+  int get eid => _eid;
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
-    map["katakunci"] = _katakunci;
-    map["artikata"] = _artikata;
+    map["entri"] = _entri;
+    map["jenis"] = _jenis;
 
-    if (id != null) {
-      map["_id"] = _id;
+    if (eid != null) {
+      map["eid"] = _eid;
     }
 
     return map;
   }
 
   Word.fromMap(Map<String, dynamic> map) {
-    this._katakunci = map["katakunci"];
-    this._artikata = map["artikata"];
-    this._id = map["_id"];
+    this._entri = map["entri"];
+    this._jenis = map["jenis"];
+    this._eid = map["eid"];
   }
 }

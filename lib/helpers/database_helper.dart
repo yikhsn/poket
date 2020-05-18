@@ -1,16 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:kbbi_app/models/word.dart';
 
 class DatabaseHelper {
-  final String tableWord = 'datakata';
-  final String columnId = '_id';
-  final String columnKata = 'datakata';
-  final String columnArti = 'artikata';
+  final String tableEntri = 'Entri';
+  final String columnEid = 'eid';
+  final String columnJenis = 'jenis';
+  final String columnEntri = 'entri';
 
   static Database _db;
   String dbName = "database.db";
@@ -50,7 +49,7 @@ class DatabaseHelper {
   // GET ALL KATA
   Future<List> getAllWords() async {
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableWord");
+    var result = await dbClient.rawQuery("SELECT * FROM $tableEntri");
 
     return result.toList();
   }
@@ -60,14 +59,14 @@ class DatabaseHelper {
     var dbClient = await db;
 
     return Sqflite.firstIntValue(
-        await dbClient.rawQuery("SELECT COUNT(*) FROM $tableWord"));
+        await dbClient.rawQuery("SELECT COUNT(*) FROM $tableEntri"));
   }
 
-  Future<Word> getWord(int id) async {
+  Future<Word> getWord(int eid) async {
     var dbClient = await db;
 
     var result = await dbClient
-        .rawQuery("SELECT * FROM $tableWord WHERE $columnId = $id");
+        .rawQuery("SELECT * FROM $tableEntri WHERE $columnEid = $eid");
     if (result.length == 0) return null;
     return new Word.fromMap(result.first);
   }
