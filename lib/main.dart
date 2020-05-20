@@ -31,6 +31,7 @@ class Kbbi extends StatelessWidget {
     return MaterialApp(
       title: "Kamus Besar Bahasa Indonesia",
       theme: ThemeData(
+        primarySwatch: Colors.teal,
         primaryColor: Colors.red,
         accentColor: Color(0xFFFEF9EB),
       ),
