@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/MainTranslation.dart';
-import 'package:kbbi_app/widgets/DetailTranslation.dart';
 import 'package:kbbi_app/widgets/MainTabView.dart';
+import 'package:kbbi_app/widgets/TurunanTabView.dart';
+import 'package:kbbi_app/widgets/GabunganTabView.dart';
 
 class NestedTabBar extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _NestedTabBarState extends State<NestedTabBar>
   void initState() {
     super.initState();
 
-    _nestedTabController = new TabController(length: 4, vsync: this);
+    _nestedTabController = new TabController(length: 3, vsync: this);
   }
 
   @override
@@ -27,7 +28,6 @@ class _NestedTabBarState extends State<NestedTabBar>
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       color: Colors.red,
       child: Column(
@@ -39,38 +39,51 @@ class _NestedTabBarState extends State<NestedTabBar>
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
+                topLeft: Radius.circular(50.0),
+                topRight: Radius.circular(50.0),
               ),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
-              ),
-              child: Container(
-                child: TabBar(
-                  // indicatorPadding: EdgeInsets.all(20.0),
-                  controller: _nestedTabController,
-                  // indicatorColor: Colors.red,
-                  labelColor: Colors.red,
-                  unselectedLabelColor: Colors.black54,
-                  isScrollable: true,
-                  tabs: <Widget>[
-                    Tab(
-                      text: "One",
+            child: Container(
+              alignment: Alignment.center,
+              child: TabBar(
+                controller: _nestedTabController,
+                indicatorColor: Colors.red,
+                labelColor: Colors.red,
+                unselectedLabelColor: Colors.black54,
+                indicatorWeight: 2.0,
+                isScrollable: true,
+                tabs: <Widget>[
+                  Tab(
+                    child: Text(
+                      'Arti Kata',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black26,
+                      ),
                     ),
-                    Tab(
-                      text: "Two",
+                  ),
+                  Tab(
+                    child: Text(
+                      'Turunan',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black26,
+                      ),
                     ),
-                    Tab(
-                      text: "Three",
+                  ),
+                  Tab(
+                    child: Text(
+                      'Gabungan',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black26,
+                      ),
                     ),
-                    Tab(
-                      text: "Four",
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -79,24 +92,8 @@ class _NestedTabBarState extends State<NestedTabBar>
               controller: _nestedTabController,
               children: <Widget>[
                 MainTabView(),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.orangeAccent,
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.greenAccent,
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: Colors.indigoAccent,
-                  ),
-                ),
+                TurunanTabView(),
+                GabunganTabView(),
               ],
             ),
           )

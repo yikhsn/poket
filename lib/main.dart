@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/screens/HomeScreen.dart';
+import 'package:kbbi_app/screens/SingleScreen.dart';
 import 'helpers/database_helper.dart';
 
 List _words;

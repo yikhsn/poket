@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/NestedTabBarView.dart';
+import 'package:kbbi_app/screens/SingleScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,40 +26,45 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(0.0), // here the desired height
-          child: AppBar(
-            elevation: 0.0,
-          )),
       backgroundColor: Colors.white,
       bottomNavigationBar: Material(
         color: Colors.white,
         child: TabBar(
           controller: _tabController,
-          indicatorColor: Colors.teal,
-          labelColor: Colors.teal,
+          indicatorColor: Colors.red,
+          labelColor: Colors.red,
           unselectedLabelColor: Colors.black54,
           tabs: <Widget>[
             Tab(
               icon: Icon(Icons.home),
             ),
             Tab(
-              icon: Icon(Icons.email),
+              icon: Icon(Icons.search),
             ),
             Tab(
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.bookmark),
             ),
           ],
         ),
       ),
       body: TabBarView(
         children: <Widget>[
-          NestedTabBar(),
           Center(
             child: Text("Email"),
           ),
           Center(
-            child: Text("Settings"),
+            child: Text("Email"),
+          ),
+          Center(
+            child: FlatButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SingleScreen()),
+                );
+              },
+              child: Text('Go to Single'),
+            ),
           )
         ],
         controller: _tabController,

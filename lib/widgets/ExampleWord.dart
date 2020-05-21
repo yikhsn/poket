@@ -17,14 +17,15 @@ class ExampleWord extends StatelessWidget {
             width: 20.0,
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.65,
+            width: MediaQuery.of(context).size.width * 0.73,
             child: Text(
-              '\"takut tidak ada dlm kamus saya\"',
+              '\"takut tidak ada dalam kamus saya\"',
               style: TextStyle(
                 color: Colors.black38,
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
                 fontStyle: FontStyle.italic,
+                height: 1.3,
               ),
             ),
           ),

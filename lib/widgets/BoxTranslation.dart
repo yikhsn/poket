@@ -6,7 +6,8 @@ class BoxTranslation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        // color: Theme.of(context).accentColor,
+        color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30.0),
           topRight: Radius.circular(30.0),
@@ -14,8 +15,9 @@ class BoxTranslation extends StatelessWidget {
           bottomLeft: Radius.circular(30.0),
         ),
       ),
-      padding: EdgeInsets.all(20),
-      margin: EdgeInsets.only(bottom: 10.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: 10.0,
+      ),
       width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -45,30 +47,35 @@ class BoxTranslation extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.73,
+                      width: MediaQuery.of(context).size.width * 0.78,
                       child: Text(
                         'nomina',
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w400,
                           color: Colors.redAccent,
+                          height: 1.3,
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 5.0,
+                    ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.73,
+                      width: MediaQuery.of(context).size.width * 0.78,
                       child: Text(
                         'karya rujukan atau acuan dalam bentuk cetak maupun digital yang memuat kata dan ungkapan, dapat disusun menurut abjad atau tema, berisi keterangan tentang makna, pemakaian atau terjemahan',
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.w400,
                           color: Colors.black54,
+                          height: 1.3,
                         ),
                         // overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     SizedBox(
-                      height: 10.0,
+                      height: 15.0,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -77,12 +84,12 @@ class BoxTranslation extends StatelessWidget {
                         Container(
                           child: Icon(
                             Icons.subdirectory_arrow_right,
-                            color: Colors.black45,
+                            color: Colors.black38,
                             size: 20.0,
                           ),
                         ),
                         SizedBox(
-                          height: 3.0,
+                          height: 5.0,
                         ),
                         Column(
                           children: <Widget>[
@@ -97,7 +104,13 @@ class BoxTranslation extends StatelessWidget {
                 ),
               )
             ],
-          )
+          ),
+          SizedBox(
+            height: 40.0,
+            child: Divider(
+              color: Colors.black12,
+            ),
+          ),
         ],
       ),
     );
