@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/widgets/NestedTabBarView.dart';
+import 'package:kbbi_app/screenviews/SingleScreenView.dart';
 
 class SingleScreen extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class _SingleScreenState extends State<SingleScreen>
         ),
       ),
       backgroundColor: Colors.white,
-      body: NestedTabBar(),
+      body: SingleScreenView(),
     );
   }
 }

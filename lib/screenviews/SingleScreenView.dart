@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/MainTranslation.dart';
-import 'package:kbbi_app/widgets/MainTabView.dart';
-import 'package:kbbi_app/widgets/TurunanTabView.dart';
-import 'package:kbbi_app/widgets/GabunganTabView.dart';
+import 'package:kbbi_app/tabviews/MainTabView.dart';
+import 'package:kbbi_app/tabviews/TurunanTabView.dart';
+import 'package:kbbi_app/tabviews/GabunganTabView.dart';
 
-class NestedTabBar extends StatefulWidget {
+class SingleScreenView extends StatefulWidget {
   @override
-  _NestedTabBarState createState() => _NestedTabBarState();
+  _SingleScreenViewState createState() => _SingleScreenViewState();
 }
 
-class _NestedTabBarState extends State<NestedTabBar>
+class _SingleScreenViewState extends State<SingleScreenView>
     with TickerProviderStateMixin {
   TabController _nestedTabController;
 
@@ -39,8 +39,8 @@ class _NestedTabBarState extends State<NestedTabBar>
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(50.0),
-                topRight: Radius.circular(50.0),
+                topLeft: Radius.circular(25.0),
+                topRight: Radius.circular(25.0),
               ),
             ),
             child: Container(

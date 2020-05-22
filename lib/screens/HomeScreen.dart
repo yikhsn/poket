@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/widgets/NestedTabBarView.dart';
 import 'package:kbbi_app/screens/SingleScreen.dart';
+import 'package:kbbi_app/screenviews/HomeScreenView.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,7 +26,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // appBar: AppBar(
+      //   title: Text(
+      //     'KBBI V',
+      //     style: TextStyle(
+      //       color: Colors.white,
+      //       fontSize: 30.0,
+      //       fontWeight: FontWeight.w500,
+      //     ),
+      //   ),
+      //   elevation: 0.0,
+      // ),
+      backgroundColor: Colors.red,
       bottomNavigationBar: Material(
         color: Colors.white,
         child: TabBar(
@@ -49,9 +60,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       body: TabBarView(
         children: <Widget>[
-          Center(
-            child: Text("Email"),
-          ),
+          HomeScreenView(),
           Center(
             child: Text("Email"),
           ),
