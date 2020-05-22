@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/SectionTitle.dart';
+import 'package:kbbi_app/widgets/Letters.dart';
 
 class LetternavSection extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class LetternavSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SectionTitle(),
+            SectionTitle('Berdasarkan huruf'),
             Expanded(
               child: Container(
                 color: Colors.white,
@@ -19,79 +20,23 @@ class LetternavSection extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   scrollDirection: Axis.horizontal,
                   children: <Widget>[
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
-                    Letters(),
+                    Letters('A', 'B'),
+                    Letters('C', 'D'),
+                    Letters('E', 'F'),
+                    Letters('G', 'H'),
+                    Letters('I', 'J'),
+                    Letters('K', 'L'),
+                    Letters('M', 'N'),
+                    Letters('O', 'Q'),
+                    Letters('R', 'T'),
+                    Letters('U', 'V'),
+                    Letters('W', 'X'),
+                    Letters('Y', 'Z'),
                   ],
                 ),
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class Letters extends StatelessWidget {
-  const Letters({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        LetterBox(),
-        LetterBox(),
-      ],
-    );
-  }
-}
-
-class LetterBox extends StatelessWidget {
-  const LetterBox({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        width: 110.0,
-        margin: EdgeInsets.symmetric(
-          horizontal: 7.5,
-          vertical: 7.5,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[350],
-              blurRadius: 10.0,
-              offset: Offset(0, 5.0),
-            )
-          ],
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Center(
-          child: Text(
-            'A',
-            style: TextStyle(
-              color: Colors.redAccent,
-              fontSize: 50.0,
-              // fontWeight: FontWeight.w600,
-            ),
-          ),
         ),
       ),
     );

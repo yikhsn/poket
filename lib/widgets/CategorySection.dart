@@ -3,10 +3,6 @@ import 'package:kbbi_app/widgets/RowBoxMenuCategory.dart';
 import 'package:kbbi_app/widgets/SectionTitle.dart';
 
 class CategorySection extends StatelessWidget {
-  const CategorySection({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +20,7 @@ class CategorySection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SectionTitle(),
+            SectionTitle('Berdasarkan kategori'),
             SizedBox(
               height: 15.0,
             ),
@@ -34,9 +30,9 @@ class CategorySection extends StatelessWidget {
               ),
               child: Column(
                 children: <Widget>[
-                  RowBoxMenuCategory(),
-                  RowBoxMenuCategory(),
-                  RowBoxMenuCategory(),
+                  RowBoxMenuCategory('Daerah', 'Teknologi'),
+                  RowBoxMenuCategory('Turunan', 'Gabungan'),
+                  RowBoxMenuCategory('Bahasa', 'Kias'),
                 ],
               ),
             ),

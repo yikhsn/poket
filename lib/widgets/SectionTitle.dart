@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SectionTitle extends StatelessWidget {
-  const SectionTitle({
-    Key key,
-  }) : super(key: key);
+  final String title;
+
+  SectionTitle(this.title);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class SectionTitle extends StatelessWidget {
         horizontal: 30.0,
       ),
       child: Text(
-        'Berdasarkan Kategori',
+        title,
         style: TextStyle(
           color: Colors.black26,
           fontSize: 25.0,

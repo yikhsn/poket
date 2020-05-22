@@ -1,38 +1,41 @@
 import 'package:flutter/material.dart';
 
-class MenuCategory extends StatelessWidget {
-  MenuCategory(this.cateogryName);
+class LetterBox extends StatelessWidget {
+  final String letter;
 
-  final String cateogryName;
+  LetterBox(this.letter);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          print('menu clicked');
+          print('botton letter tapped');
         },
         child: Container(
+          width: 110.0,
+          margin: EdgeInsets.symmetric(
+            horizontal: 7.5,
+            vertical: 7.5,
+          ),
           decoration: BoxDecoration(
-            // color: Theme.of(context).accentColor,
             color: Colors.white,
             boxShadow: [
               BoxShadow(
                 color: Colors.grey[350],
-                blurRadius: 20.0,
-                offset: Offset(0, 10.0),
+                blurRadius: 10.0,
+                offset: Offset(0, 5.0),
               )
             ],
             borderRadius: BorderRadius.circular(10.0),
           ),
-          margin: EdgeInsets.all(5.0),
-          height: 60.0,
           child: Center(
             child: Text(
-              cateogryName,
+              letter,
               style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black45,
+                color: Colors.redAccent,
+                fontSize: 50.0,
+                // fontWeight: FontWeight.w600,
               ),
             ),
           ),
