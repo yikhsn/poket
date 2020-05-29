@@ -7,7 +7,7 @@ class MainTranslation extends StatelessWidget {
       child: Container(
         color: Colors.red,
         width: MediaQuery.of(context).size.width,
-        height: 200.0,
+        height: 170.0,
         margin: EdgeInsets.all(0.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

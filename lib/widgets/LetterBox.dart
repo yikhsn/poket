@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/screens/ExploreScreen.dart';
 
 class LetterBox extends StatelessWidget {
   final String letter;
@@ -10,7 +11,12 @@ class LetterBox extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          print('botton letter tapped');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ExploreScreen(),
+            ),
+          );
         },
         child: Container(
           width: 110.0,

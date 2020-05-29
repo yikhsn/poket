@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
-class ListTurunan extends StatelessWidget {
-  const ListTurunan({
-    Key key,
-  }) : super(key: key);
-
+class ListBookmark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: () {},
-      padding: EdgeInsets.all(0.0),
+    return GestureDetector(
+      onTap: () {},
       child: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 20.0,
           vertical: 15.0,
         ),
+        margin: EdgeInsets.symmetric(
+          horizontal: 20.0,
+          vertical: 7.5,
+        ),
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          // color: Theme.of(context).accentColor,
+          color: Colors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15.0),
             topRight: Radius.circular(15.0),
@@ -36,23 +36,16 @@ class ListTurunan extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'kamus',
-              style: TextStyle(
-                fontSize: 14.0,
-                color: Colors.black26,
-              ),
-            ),
             Icon(
-              Icons.arrow_right,
+              Icons.bookmark_border,
               color: Colors.black26,
-              size: 22.0,
+              size: 25.0,
             ),
             Expanded(
               child: Text(
                 'kamus bahasa aceh',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.w500,
                   color: Colors.black38,
                 ),

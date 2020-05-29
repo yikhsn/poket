@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/CategorySection.dart';
 import 'package:kbbi_app/widgets/SearchSection.dart';
 import 'package:kbbi_app/widgets/LetternavSection.dart';
+import 'package:kbbi_app/screens/ExploreScreen.dart';
 
 class HomeScreenView extends StatefulWidget {
   @override

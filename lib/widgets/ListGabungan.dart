@@ -23,6 +23,13 @@ class ListGabungan extends StatelessWidget {
             bottomLeft: Radius.circular(15.0),
             bottomRight: Radius.circular(15.0),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[350],
+              blurRadius: 5.0,
+              offset: Offset(0, 5.0),
+            )
+          ],
         ),
         width: MediaQuery.of(context).size.width,
         child: Row(

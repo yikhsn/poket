@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/screens/HomeScreen.dart';
 import 'package:kbbi_app/screens/SingleScreen.dart';
+import 'package:kbbi_app/screens/ExploreScreen.dart';
 import 'helpers/database_helper.dart';
 
 List _words;
@@ -30,7 +31,6 @@ class Kbbi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Kamus Besar Bahasa Indonesia",
       theme: ThemeData(
         primarySwatch: Colors.teal,
         primaryColor: Colors.red,

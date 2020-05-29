@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/screens/SingleScreen.dart';
 import 'package:kbbi_app/screenviews/HomeScreenView.dart';
+import 'package:kbbi_app/screenviews/SearchScreenView.dart';
+import 'package:kbbi_app/screenviews/BookmarkScreenView.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -61,20 +63,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       body: TabBarView(
         children: <Widget>[
           HomeScreenView(),
-          Center(
-            child: Text("Email"),
-          ),
-          Center(
-            child: FlatButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SingleScreen()),
-                );
-              },
-              child: Text('Go to Single'),
-            ),
-          )
+          SearchScreenView(),
+          BookmarkScreenView(),
         ],
         controller: _tabController,
       ),

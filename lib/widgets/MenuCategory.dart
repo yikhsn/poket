@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/screens/ExploreScreen.dart';
 
 class MenuCategory extends StatelessWidget {
   MenuCategory(this.cateogryName);
@@ -10,7 +11,12 @@ class MenuCategory extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          print('menu clicked');
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ExploreScreen(),
+            ),
+          );
         },
         child: Container(
           decoration: BoxDecoration(
