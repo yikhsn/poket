@@ -32,6 +32,7 @@ class Kbbi extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        fontFamily: 'Lato',
         primarySwatch: Colors.teal,
         primaryColor: Colors.red,
         accentColor: Color(0xFFFEF9EB),
