@@ -7,29 +7,22 @@ class ListBookmark extends StatelessWidget {
       onTap: () {},
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 15.0,
+          horizontal: 35.0,
+          vertical: 20.0,
         ),
-        margin: EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 7.5,
+        margin: EdgeInsets.only(
+          left: 0.0,
+          right: 20.0,
+          top: 5.0,
+          bottom: 5.0,
         ),
         decoration: BoxDecoration(
           // color: Theme.of(context).accentColor,
-          color: Colors.white,
+          color: Theme.of(context).accentColor,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(15.0),
-            topRight: Radius.circular(15.0),
-            bottomLeft: Radius.circular(15.0),
-            bottomRight: Radius.circular(15.0),
+            topRight: Radius.circular(30.0),
+            bottomRight: Radius.circular(30.0),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[350],
-              blurRadius: 5.0,
-              offset: Offset(0, 5.0),
-            )
-          ],
         ),
         width: MediaQuery.of(context).size.width,
         child: Row(
@@ -38,8 +31,11 @@ class ListBookmark extends StatelessWidget {
           children: <Widget>[
             Icon(
               Icons.bookmark_border,
-              color: Colors.black26,
+              color: Colors.black45,
               size: 25.0,
+            ),
+            SizedBox(
+              width: 10.0,
             ),
             Expanded(
               child: Text(
@@ -47,7 +43,7 @@ class ListBookmark extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black38,
+                  color: Colors.black45,
                 ),
               ),
             ),

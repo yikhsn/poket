@@ -31,10 +31,7 @@ class SearchBox extends StatelessWidget {
       height: 60.0,
       child: TextField(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SingleScreen()),
-          );
+          print('tapped');
         },
         controller: _inputSearchController,
         decoration: InputDecoration(

@@ -16,9 +16,9 @@ class BoxTranslation extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.symmetric(
-        horizontal: 10.0,
+        horizontal: 9.0,
       ),
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery.of(context).size.width * 0.78,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class BoxTranslation extends StatelessWidget {
                       height: 5.0,
                     ),
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.78,
+                      width: MediaQuery.of(context).size.width * 0.75,
                       child: Text(
                         'karya rujukan atau acuan dalam bentuk cetak maupun digital yang memuat kata dan ungkapan, dapat disusun menurut abjad atau tema, berisi keterangan tentang makna, pemakaian atau terjemahan',
                         style: TextStyle(

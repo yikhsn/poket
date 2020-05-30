@@ -10,6 +10,10 @@ class BodyBookmark extends StatelessWidget {
           horizontal: 0.0,
           vertical: 0.0,
         ),
+        margin: EdgeInsets.symmetric(
+          horizontal: 0.0,
+          vertical: 0.0,
+        ),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.white,

@@ -25,6 +25,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _tabController.dispose();
   }
 
+  // function to move tab view to search tab when seach button pressed
+  void moveToSearch() {
+    _tabController.animateTo(1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       body: TabBarView(
         children: <Widget>[
-          HomeScreenView(),
+          HomeScreenView(moveToSearch),
           SearchScreenView(),
           BookmarkScreenView(),
         ],
