@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/ResultList.dart';
+import 'package:kbbi_app/helpers/database_helper.dart';
+import 'package:kbbi_app/models/word.dart';
 
 class ExploreScreen extends StatefulWidget {
   @override
@@ -7,6 +9,29 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  List _words;
+  List<Word> listWord = [];
+
+  final db = new DatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    initList();
+  }
+
+  void initList() async {
+    _words = await db.getAllWords();
+
+    for (int i = 0; i < _words.length; i++) {
+      Word word = Word.map(_words[i]);
+      listWord.add(word);
+    }
+
+    print(listWord);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,27 +44,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
         ),
-        child: ListView(
-          children: <Widget>[
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-            ResultList(),
-          ],
+        child: ListView.builder(
+          itemCount: listWord.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ResultList(listWord[index]);
+          },
         ),
       ),
     );

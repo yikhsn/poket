@@ -3,6 +3,8 @@ import 'package:kbbi_app/widgets/MainTranslation.dart';
 import 'package:kbbi_app/tabviews/MainTabView.dart';
 import 'package:kbbi_app/tabviews/TurunanTabView.dart';
 import 'package:kbbi_app/tabviews/GabunganTabView.dart';
+import 'package:kbbi_app/models/word.dart';
+import 'package:kbbi_app/helpers/database_helper.dart';
 
 class SingleScreenView extends StatefulWidget {
   @override
@@ -12,10 +14,15 @@ class SingleScreenView extends StatefulWidget {
 class _SingleScreenViewState extends State<SingleScreenView>
     with TickerProviderStateMixin {
   TabController _nestedTabController;
+  Word word;
+
+  final db = new DatabaseHelper();
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
+
+    await getWord();
 
     _nestedTabController = new TabController(length: 3, vsync: this);
   }
@@ -24,6 +31,10 @@ class _SingleScreenViewState extends State<SingleScreenView>
   void dispose() {
     super.dispose();
     _nestedTabController.dispose();
+  }
+
+  void getWord() async {
+    word = await db.getWord(10);
   }
 
   @override
@@ -55,7 +66,7 @@ class _SingleScreenViewState extends State<SingleScreenView>
                 tabs: <Widget>[
                   Tab(
                     child: Text(
-                      'Arti Kata',
+                      word.entri,
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,

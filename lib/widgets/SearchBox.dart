@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/screens/SingleScreen.dart';
 
 class SearchBox extends StatelessWidget {
   const SearchBox({

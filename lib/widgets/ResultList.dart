@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/screens/SingleScreen.dart';
+import 'package:kbbi_app/models/word.dart';
 
 class ResultList extends StatelessWidget {
+  final Word word;
+
+  ResultList(this.word);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,11 +35,13 @@ class ResultList extends StatelessWidget {
           ),
           child: Row(
             children: <Widget>[
-              Text(
-                'kamus bahasa',
-                style: TextStyle(
-                  color: Colors.black45,
-                  fontSize: 18.0,
+              Expanded(
+                child: Text(
+                  word.entri,
+                  style: TextStyle(
+                    color: Colors.black45,
+                    fontSize: 18.0,
+                  ),
                 ),
               ),
             ],

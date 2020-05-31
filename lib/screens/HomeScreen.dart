@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/screens/SingleScreen.dart';
 import 'package:kbbi_app/screenviews/HomeScreenView.dart';
 import 'package:kbbi_app/screenviews/SearchScreenView.dart';
 import 'package:kbbi_app/screenviews/BookmarkScreenView.dart';

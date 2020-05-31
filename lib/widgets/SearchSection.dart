@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/widgets/SearchBox.dart';
-import 'package:kbbi_app/screenviews/SearchScreenView.dart';
 
 class SearchSection extends StatelessWidget {
   final Function moveToSearch;
@@ -12,9 +10,41 @@ class SearchSection extends StatelessWidget {
       color: Theme.of(context).primaryColor,
       height: 200.0,
       width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.symmetric(
+        vertical: 20.0,
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          Container(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  'POCKET',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  'Aplikasi Kamus Besar Bahasa Indonesia Versi 5',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
           GestureDetector(
             onTap: moveToSearch,
             child: Container(
