@@ -1,12 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/models/word.dart';
+import 'package:kbbi_app/helpers/database_helper.dart';
 
-class ExampleWord extends StatelessWidget {
-  const ExampleWord({
-    Key key,
-  }) : super(key: key);
+class ExampleWord extends StatefulWidget {
+  final Word word;
+  const ExampleWord(this.word);
+
+  @override
+  _ExampleWordState createState() => _ExampleWordState();
+}
+
+class _ExampleWordState extends State<ExampleWord> {
+  List listContoh = [];
+  List contoh;
+  final db = new DatabaseHelper();
+
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(
+      Duration.zero,
+      () async {
+        await getContoh();
+      },
+    );
+  }
+
+  void getContoh() async {
+    if (widget.word.mid != null) {
+      listContoh = await db.getContoh(widget.word.mid);
+
+      // for (int i = 0; i < contoh.length; i++) {
+      //   List contoh_extract = Word.map(contoh[i]);
+
+      //   setState(() {
+      //     listContoh.add(contoh_extract);
+      //   });
+      // }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(listContoh);
+
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: 2.5,
@@ -19,7 +57,7 @@ class ExampleWord extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width * 0.73,
             child: Text(
-              '\"takut tidak ada dalam kamus saya\"',
+              widget.word.mid.toString(),
               style: TextStyle(
                 color: Colors.black38,
                 fontSize: 18.0,

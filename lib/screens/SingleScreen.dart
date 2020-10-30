@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/screenviews/SingleScreenView.dart';
 
 class SingleScreen extends StatefulWidget {
+  final String id_entri;
+
+  SingleScreen(this.id_entri);
+
   @override
   _SingleScreenState createState() => _SingleScreenState();
 }
@@ -33,7 +38,9 @@ class _SingleScreenState extends State<SingleScreen>
         ),
       ),
       backgroundColor: Colors.white,
-      body: SingleScreenView(),
+      body: Container(
+        child: SingleScreenView(widget.id_entri),
+      ),
     );
   }
 }

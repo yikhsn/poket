@@ -21,7 +21,7 @@ class SearchSection extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text(
-                  'POCKET',
+                  'POKET',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 35.0,
@@ -32,7 +32,7 @@ class SearchSection extends StatelessWidget {
                   height: 5.0,
                 ),
                 Text(
-                  'Aplikasi Kamus Besar Bahasa Indonesia Versi 5',
+                  'Aplikasi Kamus Besar Bahasa Indonesia Edisi 5',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,

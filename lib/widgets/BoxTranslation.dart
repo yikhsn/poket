@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/widgets/ExampleWord.dart';
 
 class BoxTranslation extends StatelessWidget {
+  final Word word;
+
+  BoxTranslation(this.word);
+
+  String printKelas(String kelas) {
+    if (kelas == 'n')
+      return 'nomina';
+    else if (kelas == 'a')
+      return 'adjektiva';
+    else if (kelas == 'adv')
+      return 'adverbia';
+    else if (kelas == 'v')
+      return 'verba';
+    else if (kelas == 'pron')
+      return 'pronomina';
+    else if (kelas == 'num')
+      return 'numeralia';
+    else
+      return kelas;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,31 +70,35 @@ class BoxTranslation extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width * 0.78,
-                      child: Text(
-                        'nomina',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.redAccent,
-                          height: 1.3,
-                        ),
-                      ),
+                      child: word.kelas == null
+                          ? null
+                          : Text(
+                              printKelas(word.kelas),
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.redAccent,
+                                height: 1.3,
+                              ),
+                            ),
                     ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.75,
-                      child: Text(
-                        'karya rujukan atau acuan dalam bentuk cetak maupun digital yang memuat kata dan ungkapan, dapat disusun menurut abjad atau tema, berisi keterangan tentang makna, pemakaian atau terjemahan',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black54,
-                          height: 1.3,
-                        ),
-                        // overflow: TextOverflow.ellipsis,
-                      ),
+                      child: word.makna == null
+                          ? null
+                          : Text(
+                              word.makna,
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black54,
+                                height: 1.3,
+                              ),
+                              // overflow: TextOverflow.ellipsis,
+                            ),
                     ),
                     SizedBox(
                       height: 15.0,
@@ -91,13 +117,11 @@ class BoxTranslation extends StatelessWidget {
                         SizedBox(
                           height: 5.0,
                         ),
-                        Column(
-                          children: <Widget>[
-                            ExampleWord(),
-                            ExampleWord(),
-                            ExampleWord(),
-                          ],
-                        )
+                        // Column(
+                        //   children: <Widget>[
+                        //     ExampleWord(word),
+                        //   ],
+                        // )
                       ],
                     ),
                   ],

@@ -46,28 +46,87 @@ class DatabaseHelper {
     return await openDatabase(path);
   }
 
-  // GET ALL KATA
   Future<List> getAllWords() async {
     var dbClient = await db;
-    var result = await dbClient.rawQuery("SELECT * FROM $tableEntri");
+    var result =
+        await dbClient.rawQuery("SELECT * FROM $tableEntri WHERE aktif = 1");
 
     return result.toList();
   }
 
-  //Count data
   Future<int> getCount() async {
     var dbClient = await db;
 
-    return Sqflite.firstIntValue(
-        await dbClient.rawQuery("SELECT COUNT(*) FROM $tableEntri"));
+    return Sqflite.firstIntValue(await dbClient
+        .rawQuery("SELECT COUNT(*) FROM $tableEntri WHERE aktif = 1"));
   }
 
   Future<Word> getWord(int eid) async {
     var dbClient = await db;
 
-    var result = await dbClient
-        .rawQuery("SELECT * FROM $tableEntri WHERE $columnEid = $eid");
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.eid = $eid AND E.aktif = 1");
     if (result.length == 0) return null;
     return new Word.fromMap(result.first);
+  }
+
+  Future<List> getWords(String id_entri) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.id_entri = '$id_entri' AND E.aktif = 1");
+    if (result.length == 0) return [];
+
+    return result.toList();
+    // return new Word.fromMap(result.first);
+  }
+
+  Future<List> getTurunan(int induk) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.induk = $induk AND E.jenis = 'berimbuhan' GROUP BY E.eid ORDER BY E.eid AND E.aktif = 1");
+    if (result.length == 0) return [];
+
+    return result.toList();
+    // return new Word.fromMap(result.first);
+  }
+
+  Future<List> getGabungan(int induk) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.induk = $induk AND E.jenis = 'gabungan' AND E.aktif = 1 GROUP BY E.eid ORDER BY E.eid");
+    if (result.length == 0) return [];
+
+    return result.toList();
+    // return new Word.fromMap(result.first);
+  }
+
+  Future<List> getWordPattern(int eid) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.eid = $eid AND E.aktif = 1");
+
+    return result.toList();
+  }
+
+  Future<List> getWordStartWith(String char) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.entri LIKE '$char%' AND E.jenis = 'dasar' AND E.aktif = 1 GROUP BY E.id_entri ORDER BY E.eid");
+
+    return result.toList();
+  }
+
+  Future<List> getContoh(int mid) async {
+    var dbClient = await db;
+
+    var result = await dbClient
+        .rawQuery("SELECT * from Contoh WHERE mid = $mid AND aktif = 1");
+
+    return result.toList();
   }
 }

@@ -7,6 +7,10 @@ import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/helpers/database_helper.dart';
 
 class SingleScreenView extends StatefulWidget {
+  final String id_entri;
+
+  SingleScreenView(this.id_entri);
+
   @override
   _SingleScreenViewState createState() => _SingleScreenViewState();
 }
@@ -14,15 +18,22 @@ class SingleScreenView extends StatefulWidget {
 class _SingleScreenViewState extends State<SingleScreenView>
     with TickerProviderStateMixin {
   TabController _nestedTabController;
+  // List words = [];
+  List<Word> listWord = [];
   Word word;
 
   final db = new DatabaseHelper();
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
 
-    await getWord();
+    // Future.delayed(
+    //   Duration(seconds: 0),
+    //   () async {
+    //     await getWord();
+    //   },
+    // );
 
     _nestedTabController = new TabController(length: 3, vsync: this);
   }
@@ -33,8 +44,30 @@ class _SingleScreenViewState extends State<SingleScreenView>
     _nestedTabController.dispose();
   }
 
-  void getWord() async {
-    word = await db.getWord(10);
+  Future<List<Word>> getListWord() async {
+    List<Word> resultList = [];
+    List words = [];
+    words = await db.getWords(widget.id_entri);
+
+    for (int i = 0; i < words.length; i++) {
+      Word word_single = Word.map(words[i]);
+
+      resultList.add(word_single);
+    }
+    if (resultList.length > 0) {
+      return resultList;
+    }
+  }
+
+  Future<Word> getWords() async {
+    List words = [];
+    Word word;
+    words = await db.getWords(widget.id_entri);
+
+    if (words.length > 0) {
+      word = new Word.fromMap(words.first);
+      return word;
+    }
   }
 
   @override
@@ -44,7 +77,23 @@ class _SingleScreenViewState extends State<SingleScreenView>
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          MainTranslation(),
+          FutureBuilder(
+            builder: (BuildContext context, AsyncSnapshot<Word> snapshot) {
+              Widget children;
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData) {
+                  children = MainTranslation(snapshot.data);
+                } else if (snapshot.hasError) {
+                  children = children = Text('Tidak ada data');
+                }
+              } else {
+                children = Text('Tidak ada data');
+              }
+              return children;
+            },
+            future: getWords(),
+          ),
+          // FutureBuilder(child: MainTranslation(word)),
           Container(
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
@@ -66,7 +115,7 @@ class _SingleScreenViewState extends State<SingleScreenView>
                 tabs: <Widget>[
                   Tab(
                     child: Text(
-                      word.entri,
+                      'Main',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
@@ -102,9 +151,68 @@ class _SingleScreenViewState extends State<SingleScreenView>
             child: TabBarView(
               controller: _nestedTabController,
               children: <Widget>[
-                MainTabView(),
-                TurunanTabView(),
-                GabunganTabView(),
+                Container(
+                  child: FutureBuilder(
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<Word>> snapshot) {
+                      Widget children;
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData) {
+                          children = MainTabView(snapshot.data);
+                        } else if (snapshot.hasError) {
+                          children = Text('Tidak ada data');
+                        }
+                      } else {
+                        children = Text('Tidak ada data');
+                      }
+                      return children;
+                    },
+                    future: getListWord(),
+                  ),
+                ),
+                Container(
+                  child: FutureBuilder(
+                    builder:
+                        (BuildContext context, AsyncSnapshot<Word> snapshot) {
+                      Widget children;
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData) {
+                          children = TurunanTabView(snapshot.data);
+                        } else if (snapshot.hasError) {
+                          children = Text('Tidak ada data');
+                        }
+                      } else {
+                        children = Text('Tidak ada data');
+                      }
+                      return children;
+                    },
+                    future: getWords(),
+                  ),
+                ),
+                Container(
+                  child: FutureBuilder(
+                    builder:
+                        (BuildContext context, AsyncSnapshot<Word> snapshot) {
+                      Widget children;
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        if (snapshot.hasData) {
+                          children = GabunganTabView(snapshot.data);
+                        } else if (snapshot.hasError) {
+                          children = Text('Tidak ada data');
+                        }
+                      } else {
+                        children = Text('Tidak ada data');
+                      }
+                      return children;
+                    },
+                    future: getWords(),
+                  ),
+                ),
+                // MainTabView(listWord),
+                // // MainTabView(listWord),
+                // // MainTabView(listWord),
+                // TurunanTabView(word),
+                // GabunganTabView(word),
               ],
             ),
           )

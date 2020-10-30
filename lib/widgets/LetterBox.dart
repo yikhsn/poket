@@ -14,7 +14,7 @@ class LetterBox extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ExploreScreen(),
+              builder: (context) => ExploreScreen(this.letter),
             ),
           );
         },

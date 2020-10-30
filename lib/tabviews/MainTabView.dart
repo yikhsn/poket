@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/BoxTranslation.dart';
+import 'package:kbbi_app/models/word.dart';
 
 class MainTabView extends StatelessWidget {
+  final List<Word> listWord;
+
+  MainTabView(this.listWord);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,16 +17,16 @@ class MainTabView extends StatelessWidget {
         bottom: 0.0,
         left: 20.0,
       ),
-      child: ListView(
+      child: ListView.builder(
         padding: EdgeInsets.symmetric(
           vertical: 15.0,
         ),
-        children: <Widget>[
-          BoxTranslation(),
-          BoxTranslation(),
-          BoxTranslation(),
-          BoxTranslation(),
-        ],
+        itemCount: listWord.length,
+        itemBuilder: (BuildContext context, int index) {
+          return listWord[index].makna == null && listWord[index].kelas == null
+              ? null
+              : BoxTranslation(listWord[index]);
+        },
       ),
     );
   }

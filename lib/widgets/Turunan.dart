@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/models/word.dart';
 
-class ListTurunan extends StatelessWidget {
+class Turunan extends StatelessWidget {
+  final Word word;
+  final Word wordInduk;
+  Turunan(this.word, this.wordInduk);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -29,7 +34,7 @@ class ListTurunan extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              'kamus',
+              wordInduk.entri,
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.w500,
@@ -46,7 +51,7 @@ class ListTurunan extends StatelessWidget {
             ),
             Expanded(
               child: Text(
-                'kamus bahasa aceh',
+                word.entri,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,

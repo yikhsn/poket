@@ -4,6 +4,10 @@ import 'package:kbbi_app/helpers/database_helper.dart';
 import 'package:kbbi_app/models/word.dart';
 
 class ExploreScreen extends StatefulWidget {
+  final String letter;
+
+  const ExploreScreen(this.letter);
+
   @override
   _ExploreScreenState createState() => _ExploreScreenState();
 }
@@ -18,22 +22,28 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void initState() {
     super.initState();
 
-    initList();
+    Future.delayed(Duration.zero, () async {
+      await initList();
+    });
   }
 
   void initList() async {
-    _words = await db.getAllWords();
+    _words = await db.getWordStartWith(widget.letter);
 
     for (int i = 0; i < _words.length; i++) {
       Word word = Word.map(_words[i]);
-      listWord.add(word);
+
+      setState(() {
+        listWord.add(word);
+      });
     }
 
-    print(listWord);
+    // print(listWord);
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.letter);
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore'),

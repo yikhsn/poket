@@ -14,7 +14,7 @@ class ResultList extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SingleScreen(),
+            builder: (context) => SingleScreen(this.word.id_entri),
           ),
         );
       },
@@ -37,7 +37,7 @@ class ResultList extends StatelessWidget {
             children: <Widget>[
               Expanded(
                 child: Text(
-                  word.entri,
+                  word.id_entri,
                   style: TextStyle(
                     color: Colors.black45,
                     fontSize: 18.0,

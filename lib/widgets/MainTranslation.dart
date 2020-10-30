@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kbbi_app/models/word.dart';
 
 class MainTranslation extends StatelessWidget {
+  final Word word;
+
+  MainTranslation(this.word);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -16,7 +21,7 @@ class MainTranslation extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    'Kamus',
+                    word.entri == null ? null : word.entri,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 28.0,
@@ -27,7 +32,8 @@ class MainTranslation extends StatelessWidget {
                     height: 30.0,
                   ),
                   Text(
-                    'ka-mus',
+                    word.silabel == null ? null : word.silabel,
+                    // 'ka-mus',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18.0,
