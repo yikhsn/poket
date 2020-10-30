@@ -6,8 +6,9 @@ import 'package:kbbi_app/widgets/SingleExample.dart';
 
 class BoxTranslation extends StatefulWidget {
   final Word word;
+  final int index;
 
-  BoxTranslation(this.word);
+  BoxTranslation(this.word, this.index);
 
   @override
   _BoxTranslationState createState() => _BoxTranslationState();
@@ -77,7 +78,7 @@ class _BoxTranslationState extends State<BoxTranslation> {
                   top: 5.0,
                 ),
                 child: Text(
-                  '1',
+                  widget.index.toString(),
                   style: TextStyle(
                     color: Colors.black38,
                     fontSize: 20.0,

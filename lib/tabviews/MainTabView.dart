@@ -23,9 +23,10 @@ class MainTabView extends StatelessWidget {
         ),
         itemCount: listWord.length,
         itemBuilder: (BuildContext context, int index) {
+          int wordNumber = index + 1;
           return listWord[index].makna == null && listWord[index].kelas == null
               ? null
-              : BoxTranslation(listWord[index]);
+              : BoxTranslation(listWord[index], wordNumber);
         },
       ),
     );

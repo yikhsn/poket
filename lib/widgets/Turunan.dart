@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/models/word.dart';
+import 'package:kbbi_app/screens/SingleScreen.dart';
 
 class Turunan extends StatelessWidget {
   final Word word;
@@ -10,7 +11,12 @@ class Turunan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('kata turunan clicked');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SingleScreen(this.word.id_entri),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.only(

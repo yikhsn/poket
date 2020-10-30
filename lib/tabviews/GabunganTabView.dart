@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/Turunan.dart';
+import 'package:kbbi_app/widgets/NotFoundTurunan.dart';
 import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/helpers/database_helper.dart';
 
@@ -62,9 +63,7 @@ class _GabunganTabViewState extends State<GabunganTabView> {
                   return Turunan(listWord[index], widget.wordIndukList);
                 },
               )
-            : Container(
-                child: Text('Tidak ada data'),
-              ),
+            : NotFoundTurunan('Kata tidak memiliki kata turunan gabungan'),
       ),
     );
   }
