@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/models/word.dart';
-import 'package:kbbi_app/widgets/ExampleWord.dart';
+import 'package:kbbi_app/models/example.dart';
+import 'package:kbbi_app/helpers/database_helper.dart';
+import 'package:kbbi_app/widgets/SingleExample.dart';
 
-class BoxTranslation extends StatelessWidget {
+class BoxTranslation extends StatefulWidget {
   final Word word;
 
   BoxTranslation(this.word);
 
+  @override
+  _BoxTranslationState createState() => _BoxTranslationState();
+}
+
+class _BoxTranslationState extends State<BoxTranslation> {
   String printKelas(String kelas) {
     if (kelas == 'n')
       return 'nomina';
@@ -22,6 +29,23 @@ class BoxTranslation extends StatelessWidget {
       return 'numeralia';
     else
       return kelas;
+  }
+
+  final db = new DatabaseHelper();
+
+  Future<List<Example>> getContoh() async {
+    List<Example> listContoh = [];
+    List contoh;
+    if (widget.word.mid != null) {
+      contoh = await db.getContoh(widget.word.mid);
+
+      for (int i = 0; i < contoh.length; i++) {
+        Example contoh_extract = Example.map(contoh[i]);
+
+        listContoh.add(contoh_extract);
+      }
+    }
+    return listContoh;
   }
 
   @override
@@ -70,10 +94,10 @@ class BoxTranslation extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width * 0.78,
-                      child: word.kelas == null
+                      child: widget.word.kelas == null
                           ? null
                           : Text(
-                              printKelas(word.kelas),
+                              printKelas(widget.word.kelas),
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w400,
@@ -87,10 +111,10 @@ class BoxTranslation extends StatelessWidget {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.75,
-                      child: word.makna == null
+                      child: widget.word.makna == null
                           ? null
                           : Text(
-                              word.makna,
+                              widget.word.makna,
                               style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w400,
@@ -100,29 +124,45 @@ class BoxTranslation extends StatelessWidget {
                               // overflow: TextOverflow.ellipsis,
                             ),
                     ),
-                    SizedBox(
-                      height: 15.0,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          child: Icon(
-                            Icons.subdirectory_arrow_right,
-                            color: Colors.black38,
-                            size: 20.0,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        // Column(
-                        //   children: <Widget>[
-                        //     ExampleWord(word),
-                        //   ],
-                        // )
-                      ],
+                    FutureBuilder(
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Example>> snapshot) {
+                        Widget children;
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          if (snapshot.data.length > 0) {
+                            children = Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 15.0,
+                                ),
+                                Container(
+                                  child: Icon(
+                                    Icons.subdirectory_arrow_right,
+                                    color: Colors.black38,
+                                    size: 20.0,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 5.0,
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    SingleExample(snapshot.data)
+                                  ],
+                                )
+                              ],
+                            );
+                          } else {
+                            children = Container();
+                          }
+                        } else {
+                          children = Container();
+                        }
+                        return children;
+                      },
+                      future: getContoh(),
                     ),
                   ],
                 ),

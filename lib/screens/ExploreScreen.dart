@@ -37,13 +37,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
         listWord.add(word);
       });
     }
-
-    // print(listWord);
   }
 
   @override
   Widget build(BuildContext context) {
-    print(widget.letter);
     return Scaffold(
       appBar: AppBar(
         title: Text('Explore'),

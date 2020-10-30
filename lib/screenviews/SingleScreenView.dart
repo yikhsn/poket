@@ -28,13 +28,6 @@ class _SingleScreenViewState extends State<SingleScreenView>
   void initState() {
     super.initState();
 
-    // Future.delayed(
-    //   Duration(seconds: 0),
-    //   () async {
-    //     await getWord();
-    //   },
-    // );
-
     _nestedTabController = new TabController(length: 3, vsync: this);
   }
 
@@ -208,11 +201,6 @@ class _SingleScreenViewState extends State<SingleScreenView>
                     future: getWords(),
                   ),
                 ),
-                // MainTabView(listWord),
-                // // MainTabView(listWord),
-                // // MainTabView(listWord),
-                // TurunanTabView(word),
-                // GabunganTabView(word),
               ],
             ),
           )

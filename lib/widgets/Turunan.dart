@@ -9,7 +9,9 @@ class Turunan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        print('kata turunan clicked');
+      },
       child: Container(
         padding: EdgeInsets.only(
           top: 15.0,

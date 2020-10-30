@@ -122,10 +122,13 @@ class DatabaseHelper {
   }
 
   Future<List> getContoh(int mid) async {
+    print('===========');
+    print(mid);
+    print('===========');
     var dbClient = await db;
 
     var result = await dbClient
-        .rawQuery("SELECT * from Contoh WHERE mid = $mid AND aktif = 1");
+        .rawQuery("SELECT contoh from Contoh WHERE mid = $mid AND aktif = 1");
 
     return result.toList();
   }
