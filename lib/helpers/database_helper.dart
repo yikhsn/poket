@@ -132,4 +132,34 @@ class DatabaseHelper {
 
     return result.toList();
   }
+
+  Future<List> getCategoryByJenis(String jenis) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT kategori, katid, jenis from Kategori WHERE jenis = '$jenis' AND aktif = 1 AND kategori IS NOT NULL AND katid IS NOT NULL ORDER BY kid");
+    if (result.length == 0) return [];
+
+    return result.toList();
+  }
+
+  Future<List> getAllCategoryByJenis() async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT kategori, katid, jenis from Kategori WHERE aktif = 1 AND kategori IS NOT NULL AND katid IS NOT NULL ORDER BY kid");
+    if (result.length == 0) return [];
+
+    return result.toList();
+  }
+
+  Future<List> getWordByCategory(String jenis) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.jenis = '$jenis' OR M.bahasa = '$jenis' OR M.ragam_var = '$jenis' OR M.bidang = '$jenis' OR M.kelas = '$jenis' AND E.aktif = 1 GROUP BY E.id_entri ORDER BY E.eid");
+    if (result.length == 0) return [];
+
+    return result.toList();
+  }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/screens/ExploreScreen.dart';
+import 'package:kbbi_app/screens/CategoryScreen.dart';
 
 class MenuCategory extends StatelessWidget {
-  MenuCategory(this.cateogryName);
+  MenuCategory(this.categoryName);
 
-  final String cateogryName;
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MenuCategory extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => ExploreScreen(this.cateogryName),
+              builder: (context) => CategoryScreen(this.categoryName),
             ),
           );
         },
@@ -35,9 +35,9 @@ class MenuCategory extends StatelessWidget {
           height: 60.0,
           child: Center(
             child: Text(
-              cateogryName,
+              categoryName.toUpperCase(),
               style: TextStyle(
-                fontSize: 18.0,
+                fontSize: 17.0,
                 color: Colors.black45,
               ),
             ),

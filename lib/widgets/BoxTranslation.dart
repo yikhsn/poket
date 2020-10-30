@@ -20,6 +20,8 @@ class _BoxTranslationState extends State<BoxTranslation> {
       return 'nomina';
     else if (kelas == 'a')
       return 'adjektiva';
+    else if (kelas == 'p')
+      return 'partikel';
     else if (kelas == 'adv')
       return 'adverbia';
     else if (kelas == 'v')

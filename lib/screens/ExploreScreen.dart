@@ -4,9 +4,10 @@ import 'package:kbbi_app/helpers/database_helper.dart';
 import 'package:kbbi_app/models/word.dart';
 
 class ExploreScreen extends StatefulWidget {
-  final String letter;
+  final String valueParam;
+  final String typeParam;
 
-  const ExploreScreen(this.letter);
+  const ExploreScreen(this.valueParam, this.typeParam);
 
   @override
   _ExploreScreenState createState() => _ExploreScreenState();
@@ -28,7 +29,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 
   void initList() async {
-    _words = await db.getWordStartWith(widget.letter);
+    if (widget.typeParam == 'letter') {
+      _words = await db.getWordStartWith(widget.valueParam);
+      print('======= get word by letter result');
+      print(widget.valueParam);
+      print('======= get word by letter result');
+    } else if (widget.typeParam == 'category') {
+      _words = await db.getWordByCategory(widget.valueParam);
+      print('======= get word by category result');
+      print(widget.valueParam);
+      print('======= get word by category result');
+    }
 
     for (int i = 0; i < _words.length; i++) {
       Word word = Word.map(_words[i]);

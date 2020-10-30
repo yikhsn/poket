@@ -30,9 +30,9 @@ class CategorySection extends StatelessWidget {
               ),
               child: Column(
                 children: <Widget>[
-                  RowBoxMenuCategory('Daerah', 'Teknologi'),
-                  RowBoxMenuCategory('Turunan', 'Gabungan'),
-                  RowBoxMenuCategory('Bahasa', 'Kias'),
+                  RowBoxMenuCategory('bahasa', 'bidang'),
+                  RowBoxMenuCategory('jenis', 'kelas'),
+                  RowBoxMenuCategory('ragam', 'semua'),
                 ],
               ),
             ),

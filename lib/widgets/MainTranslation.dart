@@ -28,18 +28,27 @@ class MainTranslation extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Text(
-                    word.silabel == null ? null : word.silabel,
-                    // 'ka-mus',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
+                  word.silabel != null
+                      ? Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            Text(
+                              word.silabel == null ? null : word.silabel,
+                              // 'ka-mus',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(
+                          width: 0.0,
+                          height: 0.0,
+                        )
                 ],
               ),
             )
