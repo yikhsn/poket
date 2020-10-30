@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/BoxTranslation.dart';
+import 'package:kbbi_app/widgets/NotFoundTurunan.dart';
 import 'package:kbbi_app/models/word.dart';
 
 class MainTabView extends StatelessWidget {
@@ -25,7 +26,7 @@ class MainTabView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           int wordNumber = index + 1;
           return listWord[index].makna == null && listWord[index].kelas == null
-              ? null
+              ? NotFoundTurunan('Kata ini tidak memiliki penjelasan')
               : BoxTranslation(listWord[index], wordNumber);
         },
       ),
