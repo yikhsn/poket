@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/screenviews/HomeScreenView.dart';
 import 'package:kbbi_app/screenviews/SearchScreenView.dart';
-import 'package:kbbi_app/screenviews/BookmarkScreenView.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    _tabController = new TabController(length: 3, vsync: this);
+    _tabController = new TabController(length: 2, vsync: this);
   }
 
   @override
@@ -31,18 +30,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    print(ModalRoute.of(context).settings.name);
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     'KBBI V',
-      //     style: TextStyle(
-      //       color: Colors.white,
-      //       fontSize: 30.0,
-      //       fontWeight: FontWeight.w500,
-      //     ),
-      //   ),
-      //   elevation: 0.0,
-      // ),
       backgroundColor: Colors.red,
       bottomNavigationBar: Material(
         color: Colors.white,
@@ -58,9 +47,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             Tab(
               icon: Icon(Icons.search),
             ),
-            Tab(
-              icon: Icon(Icons.bookmark),
-            ),
           ],
         ),
       ),
@@ -68,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         children: <Widget>[
           HomeScreenView(moveToSearch),
           SearchScreenView(),
-          BookmarkScreenView(),
         ],
         controller: _tabController,
       ),

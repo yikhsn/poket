@@ -46,7 +46,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kategori'),
+        title: Text(
+          'Kategori',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+          ),
+        ),
       ),
       backgroundColor: Colors.white,
       body: Container(

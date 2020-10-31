@@ -7,9 +7,9 @@ import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/helpers/database_helper.dart';
 
 class SingleScreenView extends StatefulWidget {
-  final String id_entri;
+  final int eid;
 
-  SingleScreenView(this.id_entri);
+  SingleScreenView(this.eid);
 
   @override
   _SingleScreenViewState createState() => _SingleScreenViewState();
@@ -40,27 +40,25 @@ class _SingleScreenViewState extends State<SingleScreenView>
   Future<List<Word>> getListWord() async {
     List<Word> resultList = [];
     List words = [];
-    words = await db.getWords(widget.id_entri);
+    words = await db.getWords(widget.eid);
 
     for (int i = 0; i < words.length; i++) {
       Word word_single = Word.map(words[i]);
 
       resultList.add(word_single);
     }
-    if (resultList.length > 0) {
-      return resultList;
-    }
+    return resultList;
   }
 
   Future<Word> getWords() async {
     List words = [];
     Word word;
-    words = await db.getWords(widget.id_entri);
+    words = await db.getWords(widget.eid);
 
     if (words.length > 0) {
       word = new Word.fromMap(words.first);
-      return word;
     }
+    return word;
   }
 
   @override
@@ -72,12 +70,15 @@ class _SingleScreenViewState extends State<SingleScreenView>
         children: <Widget>[
           FutureBuilder(
             builder: (BuildContext context, AsyncSnapshot<Word> snapshot) {
+              print(snapshot.data);
               Widget children;
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasData) {
                   children = MainTranslation(snapshot.data);
                 } else if (snapshot.hasError) {
-                  children = children = Text('Tidak ada data');
+                  children = Text('Tidak ada data');
+                } else {
+                  children = Text('Tidak ada data');
                 }
               } else {
                 children = Text('Tidak ada data');

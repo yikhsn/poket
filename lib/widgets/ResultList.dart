@@ -14,7 +14,7 @@ class ResultList extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => SingleScreen(this.word.id_entri),
+            builder: (context) => SingleScreen(this.word.eid),
           ),
         );
       },

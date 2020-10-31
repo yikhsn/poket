@@ -54,7 +54,13 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Explore'),
+        title: Text(
+          'Jelajah',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+          ),
+        ),
       ),
       backgroundColor: Colors.white,
       body: Container(

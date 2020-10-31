@@ -3,9 +3,9 @@ import 'package:kbbi_app/models/word.dart';
 import 'package:kbbi_app/screenviews/SingleScreenView.dart';
 
 class SingleScreen extends StatefulWidget {
-  final String id_entri;
+  final int eid;
 
-  SingleScreen(this.id_entri);
+  SingleScreen(this.eid);
 
   @override
   _SingleScreenState createState() => _SingleScreenState();
@@ -39,7 +39,7 @@ class _SingleScreenState extends State<SingleScreen>
       ),
       backgroundColor: Colors.white,
       body: Container(
-        child: SingleScreenView(widget.id_entri),
+        child: SingleScreenView(widget.eid),
       ),
     );
   }

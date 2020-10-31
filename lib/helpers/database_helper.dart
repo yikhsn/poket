@@ -70,11 +70,10 @@ class DatabaseHelper {
     return new Word.fromMap(result.first);
   }
 
-  Future<List> getWords(String id_entri) async {
+  Future<List> getWords(int eid) async {
     var dbClient = await db;
-
     var result = await dbClient.rawQuery(
-        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.id_entri = '$id_entri' AND E.aktif = 1");
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.eid = '$eid' AND E.aktif = 1");
     if (result.length == 0) return [];
 
     return result.toList();
@@ -116,15 +115,12 @@ class DatabaseHelper {
     var dbClient = await db;
 
     var result = await dbClient.rawQuery(
-        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.entri LIKE '$char%' AND E.jenis = 'dasar' AND E.aktif = 1 GROUP BY E.id_entri ORDER BY E.eid");
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.entri LIKE '$char%' AND E.jenis = 'dasar' AND E.aktif = 1 GROUP BY E.eid ORDER BY E.eid");
 
     return result.toList();
   }
 
   Future<List> getContoh(int mid) async {
-    print('===========');
-    print(mid);
-    print('===========');
     var dbClient = await db;
 
     var result = await dbClient
@@ -157,8 +153,17 @@ class DatabaseHelper {
     var dbClient = await db;
 
     var result = await dbClient.rawQuery(
-        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.jenis = '$jenis' OR M.bahasa = '$jenis' OR M.ragam_var = '$jenis' OR M.bidang = '$jenis' OR M.kelas = '$jenis' AND E.aktif = 1 GROUP BY E.id_entri ORDER BY E.eid");
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE  E.aktif = 1 AND (E.jenis = '$jenis' OR M.bahasa = '$jenis' OR M.ragam_var = '$jenis' OR M.bidang = '$jenis' OR M.kelas = '$jenis') GROUP BY E.eid ORDER BY E.eid");
     if (result.length == 0) return [];
+
+    return result.toList();
+  }
+
+  Future<List> searchDataLike(String char) async {
+    var dbClient = await db;
+
+    var result = await dbClient.rawQuery(
+        "SELECT E.eid, E.entri, E.entri_var, E.jenis, E.silabel, E.lafal, E.induk, E.jenis_rujuk, E.entri_rujuk, M.mid, M.ragam, M.ragam_var, M.kelas, M.bahasa, M.bidang, M.ki, M.kp, M.akr, M.makna, M.ilmiah, M.kimia, E.id_entri, E.id_hom, E.aktif AS eaktif, M.polisem, M.aktif AS maktif from Entri AS E LEFT JOIN Makna as M on E.eid = M.eid WHERE E.entri LIKE '%$char%' AND E.jenis = 'dasar' AND E.aktif = 1 GROUP BY E.eid ORDER BY E.eid");
 
     return result.toList();
   }

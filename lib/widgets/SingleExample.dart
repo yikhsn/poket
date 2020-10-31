@@ -19,7 +19,8 @@ class SingleExample extends StatelessWidget {
             width: 20.0,
           ),
           Container(
-            width: MediaQuery.of(context).size.width * 0.73,
+            width: MediaQuery.of(context).size.width * 0.70,
+            // padding: EdgeInsets.all(10),
             child: Text(
               examples.first.contoh,
               style: TextStyle(

@@ -96,7 +96,7 @@ class _BoxTranslationState extends State<BoxTranslation> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
-                      width: MediaQuery.of(context).size.width * 0.78,
+                      width: MediaQuery.of(context).size.width * 0.70,
                       child: widget.word.kelas == null
                           ? null
                           : Text(
@@ -133,29 +133,31 @@ class _BoxTranslationState extends State<BoxTranslation> {
                         Widget children;
                         if (snapshot.connectionState == ConnectionState.done) {
                           if (snapshot.data.length > 0) {
-                            children = Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 15.0,
-                                ),
-                                Container(
-                                  child: Icon(
-                                    Icons.subdirectory_arrow_right,
-                                    color: Colors.black38,
-                                    size: 20.0,
+                            children = Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 15.0,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5.0,
-                                ),
-                                Column(
-                                  children: <Widget>[
-                                    SingleExample(snapshot.data)
-                                  ],
-                                )
-                              ],
+                                  Container(
+                                    child: Icon(
+                                      Icons.subdirectory_arrow_right,
+                                      color: Colors.black38,
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Column(
+                                    children: <Widget>[
+                                      SingleExample(snapshot.data)
+                                    ],
+                                  )
+                                ],
+                              ),
                             );
                           } else {
                             children = Container();
