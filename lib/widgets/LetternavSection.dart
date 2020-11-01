@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kbbi_app/widgets/SectionTitle.dart';
 import 'package:kbbi_app/widgets/Letters.dart';
+import 'package:kbbi_app/widgets/LetterBox.dart';
 
 class LetternavSection extends StatelessWidget {
   @override
@@ -11,29 +12,38 @@ class LetternavSection extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SectionTitle('Berdasarkan huruf'),
+            Container(
+              child: SectionTitle('Berdasarkan huruf'),
+              margin: EdgeInsets.symmetric(
+                horizontal: 30.0,
+              ),
+            ),
             Expanded(
-              child: Container(
-                color: Colors.white,
-                child: ListView(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    Letters('A', 'B'),
-                    Letters('C', 'D'),
-                    Letters('E', 'F'),
-                    Letters('G', 'H'),
-                    Letters('I', 'J'),
-                    Letters('K', 'L'),
-                    Letters('M', 'N'),
-                    Letters('O', 'Q'),
-                    Letters('R', 'T'),
-                    Letters('U', 'V'),
-                    Letters('W', 'X'),
-                    Letters('Y', 'Z'),
-                  ],
+              child: ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 30.0,
+                  vertical: 10.0,
                 ),
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Wrap(
+                    children: <Widget>[
+                      LetterBox('A'),
+                      LetterBox('C'),
+                      LetterBox('E'),
+                      LetterBox('G'),
+                      LetterBox('I'),
+                      LetterBox('K'),
+                      LetterBox('M'),
+                      LetterBox('O'),
+                      LetterBox('R'),
+                      LetterBox('U'),
+                      LetterBox('W'),
+                      LetterBox('Y'),
+                    ],
+                  )
+                ],
               ),
             ),
           ],

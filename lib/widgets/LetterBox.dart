@@ -20,9 +20,16 @@ class LetterBox extends StatelessWidget {
         },
         child: Container(
           width: 110.0,
-          margin: EdgeInsets.symmetric(
+          height: 110.0,
+          padding: EdgeInsets.symmetric(
             horizontal: 7.5,
             vertical: 7.5,
+          ),
+          margin: EdgeInsets.only(
+            right: 15,
+            left: 0,
+            top: 7.5,
+            bottom: 7.5,
           ),
           decoration: BoxDecoration(
             color: Colors.white,

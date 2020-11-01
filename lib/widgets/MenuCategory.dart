@@ -8,7 +8,9 @@ class MenuCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    double width = MediaQuery.of(context).size.width;
+    return Container(
+      width: width / 2 - 30,
       child: GestureDetector(
         onTap: () {
           Navigator.push(

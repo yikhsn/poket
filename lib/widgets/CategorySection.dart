@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kbbi_app/widgets/RowBoxMenuCategory.dart';
 import 'package:kbbi_app/widgets/SectionTitle.dart';
+import 'package:kbbi_app/widgets/MenuCategory.dart';
 
 class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
@@ -13,10 +14,11 @@ class CategorySection extends StatelessWidget {
           topRight: Radius.circular(25.0),
         ),
       ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: 30.0,
-        ),
+      padding: EdgeInsets.symmetric(
+        vertical: 30.0,
+        horizontal: 30.0,
+      ),
+      child: Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -24,17 +26,16 @@ class CategorySection extends StatelessWidget {
             SizedBox(
               height: 15.0,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 20.0,
-              ),
-              child: Column(
-                children: <Widget>[
-                  RowBoxMenuCategory('bahasa', 'bidang'),
-                  RowBoxMenuCategory('jenis', 'kelas'),
-                  RowBoxMenuCategory('ragam', 'semua'),
-                ],
-              ),
+            Wrap(
+              direction: Axis.horizontal,
+              children: <Widget>[
+                MenuCategory('bahasa'),
+                MenuCategory('bidang'),
+                MenuCategory('jenis'),
+                MenuCategory('kelas'),
+                MenuCategory('ragam'),
+                MenuCategory('semua'),
+              ],
             ),
           ],
         ),

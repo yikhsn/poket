@@ -11,17 +11,12 @@ class HomeScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.red,
-        ),
-        child: Column(
-          children: <Widget>[
-            SearchSection(moveToSearch),
-            CategorySection(),
-            LetternavSection(),
-          ],
-        ),
+      child: Column(
+        children: <Widget>[
+          SearchSection(moveToSearch),
+          CategorySection(),
+          LetternavSection(),
+        ],
       ),
     );
   }
