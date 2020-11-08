@@ -1,6 +1,6 @@
-# kbbi_app
+# POKET
 
-A new Flutter project.
+Aplikasi Kamus Bahasa Indonesia Versi 5
 
 ## Getting Started
 
